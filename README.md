@@ -437,6 +437,20 @@ var opts = {
 var proxy = require('redbird')(opts);
 ````
 
+## Add customized headers to HTTP reponse to support CORS
+
+Response headers will be inserted only according to the hostname of the request, port and pathname won't be used.
+
+```javascript
+// Headers will be inserted to the range of m.example.com
+proxy.register("m.example.com:83/test/", "http://127.0.0.1:8080/", {
+  res_headers: {
+    "Access-Control-Allow-Origin":"*",
+    "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept"
+  }
+},
+);
+```
 
 ## Roadmap
 
